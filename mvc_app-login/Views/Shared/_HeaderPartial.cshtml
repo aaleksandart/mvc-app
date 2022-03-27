@@ -1,0 +1,56 @@
+﻿<div class="header-container">
+    <div class="header-logo">
+        <h1>OmniVus.</h1>
+        <p>IT Service & Technology</p>
+    </div>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="header-social">
+            <p>Logged in as - <a class="text-decoration-none text-dark" asp-controller="UserProfile" asp-action="Index" asp-route-id="@User.FindFirst("UserId").Value">@await UserProfileService.GetDisplayName(User.FindFirst("UserId").Value)</a></p>
+            <div class="social-links">
+                @if(User.IsInRole("admin"))
+                {
+                    <a asp-controller="UserProfile" asp-action="Index" asp-route-id="@User.FindFirst("UserId").Value">Profile</a>
+                    <a asp-controller="Admin" asp-action="Users">Users</a>
+                    <a asp-controller="Admin" asp-action="Roles">Roles</a>
+                    <a asp-controller="Authentication" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a href="#"></a>
+                    <a asp-controller="UserProfile" asp-action="Index" asp-route-id="@User.FindFirst("UserId").Value">Profile</a>
+                    <a href="#"></a>
+                    <a asp-controller="Authentication" asp-action="Logout">Logout</a>    
+                }
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="menu-links">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Services" asp-action="Index">Services</a>
+                <a asp-controller="Contact" asp-action="Index">Contact</a>
+            </div>
+            <a class="btn btn-book opacity-25"> Login</a>
+        </div>
+    }
+    else
+    {
+        <div class="header-social">
+            <p>info@domain.com</p>
+            <div class="social-links">
+                <a asp-controller="NotFound" asp-action="Index">facebook</a>
+                <a asp-controller="NotFound" asp-action="Index">twitter</a>
+                <a asp-controller="NotFound" asp-action="Index">linkedin</a>
+                <a asp-controller="NotFound" asp-action="Index">youtube</a>
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="menu-links">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Services" asp-action="Index">Services</a>
+                <a asp-controller="Contact" asp-action="Index">Contact</a>
+            </div>
+            <a class="btn btn-book" asp-controller="Authentication" asp-action="Login">Login</a>
+        </div>
+    }
+</div>

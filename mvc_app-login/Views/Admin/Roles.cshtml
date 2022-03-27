@@ -1,0 +1,44 @@
+﻿@model IEnumerable<IdentityRole>
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<div id="top-section" class="topsection-bg">
+    <div class="container">
+        <partial name="_HeaderPartial" />
+    </div>
+</div>
+
+<div class="bg-roles">
+    <div class="container role-section">
+        @foreach (var item in Model)
+        {
+            if (item.Name == "unknown") {}
+            else
+            {
+                <div class="m-3 card-container">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title mb-4">@Html.ValueFor(modelItem => item.Name)</h5>
+                        @if (item.Name == "admin")
+                        {
+                            <a href="#" class="btn btn-white me-2 disabled">Update role</a>
+                            <a href="#" class="btn btn-white disabled">Delete role</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Admin" asp-action="UpdateRole" asp-route-id="@Html.ValueFor(modelItem => item.Id)" class="btn btn-primary me-2">Update role</a>
+                            <a asp-controller="Admin" asp-action="DeleteRole" asp-route-id="@Html.ValueFor(modelItem => item.Id)" class="btn btn-primary">Delete role</a>
+                        }
+                        </div>
+                    </div>
+                </div>
+            }
+        }    
+    </div>
+    <div class="create-role-container">
+        <a asp-controller="Admin" asp-action="CreateRole" class="btn btn-primary a-blue">Create new role</a>
+    </div>
+        
+</div>

@@ -1,0 +1,65 @@
+﻿@model mvc_app_login.Models.Forms.RegisterForm
+
+<div id="" class="signup-section">
+    <div class="container">
+        <div class="sign-up">
+            <h2>Sign Up</h2>
+            <p class="register-text">Register your membership below.<br>Already a member? Sign in <a asp-controller="Authentication" asp-action="Login">here.</a></p>
+            <form action="" class="">
+                <div class="input-pair">
+                    <div class="input-error">
+                        <label for="">First name</label>
+                        <input asp-for="FirstName" type="text" name="" id="firstname" placeholder="Enter your firstname">
+                        <span asp-validation-for="FirstName" class="display-error" id="name-email-error"></span>
+                    </div>
+                    <div>
+                        <label for="">Last name</label>
+                        <input asp-for="LastName" class="" type="text" name="" id="lastname" placeholder="Enter your lastname">
+                        <span asp-validation-for="LastName" class="display-error" id="name-email-error"></span>
+                    </div>
+                </div>
+
+                <div class="input-pair">
+                    <div class="input-error">
+                        <label for="">Password</label>
+                        <input asp-for="Password" type="password" name="" id="password" placeholder="Enter your password">
+                        <span asp-validation-for="Password" class="display-error" id="name-email-error"></span>
+                    </div>
+                    <div>
+                        <label for="">Confirm password</label>
+                        <input asp-for="ConfirmPassword" type="password" class="" name="" id="confirmpassword"placeholder="Confirm your password">
+                        <span asp-validation-for="ConfirmPassword" class="display-error" id="name-email-error"></span>
+                    </div>
+                </div>
+                    
+                <div class="input-pair">
+                    <div class="input-error">
+                        <label for="">Email</label>
+                        <input asp-for="Email" type="text" name="" id="email" placeholder="Enter your email">
+                        <span asp-validation-for="Email" class="display-error" id="name-email-error"></span>
+                    </div>
+                    <div>
+                        <label for="">Streetname</label>
+                        <input asp-for="StreetName" type="text" class="" name="" id="streetname"placeholder="Enter your streetname">
+                        <span asp-validation-for="StreetName" class="display-error" id="name-email-error"></span>
+                    </div>
+                </div>
+                    
+                <div class="input-pair">
+                    <div class="input-error">
+                        <label for="">Postal code</label>
+                        <input asp-for="PostalCode" type="text" name="" id="postalcode" placeholder="Enter your postal code">
+                        <span asp-validation-for="PostalCode" class="display-error" id="name-email-error"></span>
+                    </div>
+                    <div>
+                        <label for="">City</label>
+                        <input asp-for="City" type="text" class="" name="" id="city" placeholder="Enter your city">
+                        <span asp-validation-for="City" class="display-error" id="name-email-error">You need to enter a valid name.</span>
+                    </div>
+                </div>
+                    
+                <button type="submit" class="btn btn-blue btn-block">Register</button>
+            </form>
+        </div>
+    </div>
+</div>

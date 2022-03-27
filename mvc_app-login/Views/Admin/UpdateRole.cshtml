@@ -1,0 +1,32 @@
+﻿@model mvc_app_login.Models.Forms.AdminRoleForm
+
+@{
+    ViewData["Title"] = "Update role";
+}
+
+<div id="" class="signup-section">
+    <div class="container">
+        <div class="sign-up">
+            <h2>Update profile</h2>
+            <p class="register-text">Want to go back home?<br>Go to the homepage <a asp-controller="Home" asp-action="Index">here.</a></p>
+            <form asp-action="PutUpdateRole" asp-route-returnUrl="@Model.ReturnUrl" asp-route-id="@Model.Id">
+                <div class="input-pair">
+                    <div class="input-error">
+                        <label asp-for="Name">Role name</label>
+                        <input asp-for="Name" type="text" placeholder="Enter role name">
+                        <span asp-validation-for="Name" class="display-error" id="name-email-error"></span>
+                    </div>
+                </div>
+                
+                <div class="display-error ps-2 pe-2">
+                    @Model.ErrorMessage
+                </div>
+                <button type="submit" class="btn btn-blue btn-block">Update role</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

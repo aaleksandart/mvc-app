@@ -1,0 +1,40 @@
+﻿@model mvc_app_login.Models.Profiles.UserProfileModel
+
+@{
+    ViewData["Title"] = "User Profile";
+}
+<div id="top-section" class="topsection-bg">
+    <div class="container">
+        <partial name="_HeaderPartial" />
+    </div>
+</div>
+
+<div class="profile-section container signup-section shadow">
+    <div class="profile-content">
+        <form>
+            <h2>@Model.FirstName @Model.LastName</h2>
+            <label>User ID</label>
+            <p>@await UserProfileService.GetUserId(Model.Email)</p>
+            <label>Role</label>
+            <p>@await UserProfileService.GetRoleName(await UserProfileService.GetUserId(Model.Email))</p>
+            <label>Email address</label>
+            <p>@Model.Email</p>
+
+            <label>Streetname</label>
+            <p>@Model.StreetName</p>
+            <label>Postal code</label>
+            <p>@Model.PostalCode</p>
+            <label>City</label>
+            <p>@Model.City</p>
+        </form>
+        @if (await UserProfileService.GetPicture(await UserProfileService.GetUserId(Model.Email)) == "")
+        {
+            <img class="d-block" src="/pictures/body.svg" alt="profile-picture">
+        }
+        else
+        {
+            <img class="d-block" src="/profile-pictures/@await UserProfileService.GetPicture(await UserProfileService.GetUserId(Model.Email))" alt="profile-picture">   
+        }
+    </div>
+    <a asp-controller="Admin" asp-action="UserUpdate" asp-route-id="@await UserProfileService.GetUserId(Model.Email)" class="text-white btn a-blue mt-4">Update details</a>
+</div>

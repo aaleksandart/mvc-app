@@ -1,0 +1,32 @@
+﻿@model IEnumerable<mvc_app_login.Models.Entities.UserProfileEntity>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div id="top-section" class="topsection-bg">
+    <div class="container">
+        <partial name="_HeaderPartial" />
+    </div>
+</div>
+
+<div class="container users-section">
+    @foreach (var item in Model) {
+        <div class="card shadow p-2">
+        @if (await UserProfileService.GetPicture(item.UserFromIdentity.Id) == "")
+        {
+            <img class="card-img-top" src="/pictures/body.svg" alt="profile-picture">
+        }
+        else
+        {
+            <img class="card-img-top" src="/profile-pictures/@await UserProfileService.GetPicture(item.UserFromIdentity.Id)" alt="profile-picture">   
+        }
+            <div class="card-body">
+                <h5 class="card-title">@Html.ValueFor(modelItem => item.FirstName) @Html.ValueFor(modelItem => item.LastName)</h5>
+                <p class="card-text">@Html.ValueFor(modelItem => item.UserFromIdentity.Id)</p>
+                <a asp-controller="Admin" asp-action="UserProfile" asp-route-id="@Html.ValueFor(modelItem => item.UserFromIdentity.Id)" class="btn btn-primary me-2">User profile</a>
+                <a asp-controller="Admin" asp-action="Delete" asp-route-id="@Html.ValueFor(modelItem => item.UserFromIdentity.Id)" class="btn btn-primary">Delete user</a>
+            </div>
+        </div>
+    }
+</div>

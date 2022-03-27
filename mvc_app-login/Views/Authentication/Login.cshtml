@@ -1,0 +1,36 @@
+﻿@model mvc_app_login.Models.Forms.LoginForm
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div id="login-sections" class="login-section signup-section">
+    <div class="container">
+        <div class="login-body sign-up">
+            <h2>Login</h2>
+            <p>Not a member? Register for a membership <a class="text-decoration-none" asp-controller="Authentication" asp-action="Register">here.</a></p>
+            <form asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+                <div class="input-pair">
+                    <div class="input-error">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" type="text" placeholder="Enter your email">
+                        <span asp-validation-for="Email" class="display-error" id="name-email-error"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Password">Password</label>
+                        <input asp-for="Password" type="password" placeholder="Enter your password">
+                        <span asp-validation-for="Password" class="display-error" id="name-email-error"></span>
+                    </div>
+                </div>
+                <div class="display-error ps-2 pe-2 text-danger">
+                    @Model.ErrorMessage
+                </div>
+                <button type="submit" class="btn btn-blue">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

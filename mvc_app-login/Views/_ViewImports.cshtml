@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using mvc_app_login
+@using mvc_app_login.Models
+@using mvc_app_login.Services
+
+@inject IUserProfileService UserProfileService
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

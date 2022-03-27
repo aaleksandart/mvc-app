@@ -1,0 +1,25 @@
+﻿@model mvc_app_login.Models.Forms.LoginForm
+
+<div id="login-sections" class="login-section signup-section">
+    <div class="container">
+        <div class="login-body sign-up">
+            <h2>Login</h2>
+            <p>Not a member? Register for a membership <a class="text-decoration-none" asp-controller="Authentication" asp-action="Register">here.</a></p>
+            <form action="">
+                <div class="input-pair">
+                    <div class="input-error">
+                        <label for="">Email</label>
+                        <input type="text" name="" id="login-email" placeholder="Enter your email">
+                        <span class="display-error" id="name-email-error">That email address does not exist in the database.</span>
+                    </div>
+                    <div>
+                        <label for="">Password</label>
+                        <input class="" type="password" name="" id="login-password" placeholder="Enter your password">
+                        <span class="display-error" id="name-email-error"></span>
+                    </div>
+                </div>
+                <button class="btn btn-blue">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

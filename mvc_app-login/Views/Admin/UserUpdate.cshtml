@@ -1,0 +1,57 @@
+﻿@model mvc_app_login.Models.Forms.AdminUpdateForm
+
+@{
+    ViewData["Title"] = "Update profile";
+}
+
+<div id="" class="signup-section">
+    <div class="container">
+        <div class="sign-up">
+            <h2>Update profile</h2>
+            <p class="register-text">Want to go back home?<br>Go to the homepage <a asp-controller="Home" asp-action="Index">here.</a></p>
+            <form asp-action="PostUserUpdate" asp-route-returnUrl="@Model.ReturnUrl" asp-route-id="@Model.Email">
+                <div class="input-pair">
+                    <div class="input-error">
+                        <label asp-for="FirstName">First name</label>
+                        <input asp-for="FirstName" type="text" placeholder="Enter your firstname">
+                        <span asp-validation-for="FirstName" class="display-error" id="name-email-error"></span>
+                    </div>
+                    <div>
+                        <label asp-for="LastName">Last name</label>
+                        <input asp-for="LastName" class="" type="text" placeholder="Enter your lastname">
+                        <span asp-validation-for="LastName" class="display-error" id="name-email-error"></span>
+                    </div>
+                </div>
+                    
+                <div class="input-pair">
+                    <div>
+                        <label asp-for="StreetName">Streetname</label>
+                        <input asp-for="StreetName" type="text" placeholder="Enter your streetname">
+                        <span asp-validation-for="StreetName" class="display-error" id="name-email-error"></span>
+                    </div>
+                    <div class="input-error">
+                        <label asp-for="PostalCode">Postal code</label>
+                        <input asp-for="PostalCode" type="text" placeholder="Enter your postal code">
+                        <span asp-validation-for="PostalCode" class="display-error" id="name-email-error"></span>
+                    </div>
+                </div>
+                    
+                <div class="input-pair">
+                    <div>
+                        <label asp-for="City">City</label>
+                        <input asp-for="City" type="text" placeholder="Enter your city">
+                        <span asp-validation-for="City" class="display-error" id="name-email-error"></span>
+                    </div>
+                </div>
+                <div class="display-error ps-2 pe-2">
+                    @Model.ErrorMessage
+                </div>
+                <button type="submit" class="btn btn-blue btn-block">Update profile</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

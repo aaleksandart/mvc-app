@@ -1,0 +1,43 @@
+﻿@model mvc_app_login.Models.Profiles.UserProfileModel
+
+@{
+    ViewData["Title"] = "User Profile";
+}
+<div id="top-section" class="topsection-bg">
+    <div class="container">
+        <partial name="_HeaderPartial" />
+    </div>
+</div>
+
+<div class="profile-section container signup-section shadow">
+    <div class="profile-content">
+        <form>
+            <h2>@await UserProfileService.GetDisplayName(User.FindFirst("UserId").Value)</h2>
+            <label for="">User ID</label>
+            <p>@User.FindFirst("UserId").Value</p>
+            <label>Role</label>
+            <p>@await UserProfileService.GetRoleName(User.FindFirst("UserId").Value)</p>
+            <label>Email address</label>
+            <p>@User.Identity.Name</p>
+
+            <label>Streetname</label>
+            <p>@Model.StreetName</p>
+            <label>Postal code</label>
+            <p>@Model.PostalCode</p>
+            <label>City</label>
+            <p>@Model.City</p>
+        </form>
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            @if (await UserProfileService.GetPicture(User.FindFirst("UserId").Value) == "")
+            {
+                <img class="d-block" src="/pictures/body.svg" alt="profile-picture">
+            }
+            else
+            {
+                <img class="d-block" src="/profile-pictures/@await UserProfileService.GetPicture(User.FindFirst("UserId").Value)" alt="profile-picture">   
+            }
+            <a asp-controller="UserProfile" asp-action="UploadPicture" class="text-white btn btn-primary mt-4">Change picture</a>
+        </div>
+    </div>
+    <a asp-controller="UserProfile" asp-action="Update" class="text-white btn a-blue mt-4">Update details</a>
+</div>
